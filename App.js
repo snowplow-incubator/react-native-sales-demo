@@ -6,7 +6,7 @@
  * @flow
  */
 
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -22,15 +22,7 @@ import {
 import {NativeModules} from 'react-native';
 const RNSnowplowTracker = NativeModules.RNSnowplowTracker;
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const screenView = () => {
+const screenView = id => {
   RNSnowplowTracker.trackScreenViewEvent(
     'Name',
     null,
@@ -43,7 +35,15 @@ const screenView = () => {
   );
 };
 
-const Item = () => {
+const itemImpression = ({id}) => {
+  console.log('impression', id)
+};
+
+const itemEngage = ({type, id}) => {
+  console.log('engage', type, id)
+};
+
+const Item = ({id, title, teaser, body, onClose}) => {
   // screenview on listing view
   // impression on item teaser render with item entity
   // click leads to engage event with type expand with item entity
@@ -51,21 +51,37 @@ const Item = () => {
   // engage click leads to 'engage/like/share' engage event again with item
   // close leads to screenview on the main page
   const [modalVisible, setModalVisible] = useState(false);
+  const onShow = () => screenView(id);
+
+  useEffect(() => {
+    itemImpression(id);
+  }, [id]);
+
   return (
     <View>
-      <Text>item title</Text>
-      <Text>item teaser</Text>
-      <Button title={'View item'} onPress={() => setModalVisible(true)}>
+      <Text>{title}</Text>
+      <Text>{teaser}</Text>
+      <Button
+        title={'View item'}
+        onPress={() => {
+          setModalVisible(true);
+          itemEngage({type: 'expand', id});
+        }}>
         View item
       </Button>
-      <Modal animationType="slide" transparent={false} visible={modalVisible}>
+      <Modal
+        animationType="slide"
+        transparent={false}
+        visible={modalVisible}
+        onShow={onShow}
+        onDismiss={onClose}>
         <View>
-          <Text>In a modal</Text>
-          <Button title={'Engage'} onPress={() => setModalVisible(false)}>
-            Engage
+          <Text>{body}</Text>
+          <Button title={'Like'} onPress={() => itemEngage({type: 'Like', id})}>
+            Like
           </Button>
           <Button title={'Close'} onPress={() => setModalVisible(false)}>
-            View item
+            Close
           </Button>
         </View>
       </Modal>
@@ -73,15 +89,26 @@ const Item = () => {
   );
 };
 
+const items = [
+  {id: 1, title: 'item one', teaser: 'teaser one', body: 'body one'},
+  {id: 2, title: 'item one', teaser: 'teaser one', body: 'body one'},
+  {id: 3, title: 'item one', teaser: 'teaser one', body: 'body one'},
+];
+
 const App: () => React$Node = () => {
   RNSnowplowTracker.initialize(
-    'ec2-52-56-222-161.eu-west-2.compute.amazonaws.com',
+    'demo.snowplowanalytics.com',
     'post',
     'http',
     'namespace',
     'app-id.13',
     {autoScreenView: false},
   );
+
+  useEffect(() => {
+    screenView();
+  }, []);
+
   return (
     <>
       <SafeAreaView>
@@ -89,9 +116,9 @@ const App: () => React$Node = () => {
           <Text>Hero Area</Text>
           <Text>Listing area</Text>
           <View>
-            <Item />
-            <Item />
-            <Item />
+            {items.map(i => (
+              <Item {...i} onClose={() => screenView()} />
+            ))}
           </View>
         </ScrollView>
       </SafeAreaView>
