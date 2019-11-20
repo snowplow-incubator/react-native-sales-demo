@@ -12,7 +12,8 @@
   "dependencies": {
     "@snowplow/react-native-tracker": "./snowplow-react-native-tracker-0.1.0-alpha.14.tgz",
     "react": "16.9.0",
-    "react-native": "0.61.4"
+    "react-native": "^0.61.4",
+    "react-native-cli": "^2.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
