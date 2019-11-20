@@ -15,7 +15,7 @@ import {
   Text,
   StatusBar,
   Button,
-  ImageBackground,
+  Image,
   Modal,
 } from 'react-native';
 
@@ -23,7 +23,7 @@ import {NativeModules} from 'react-native';
 const RNSnowplowTracker = NativeModules.RNSnowplowTracker;
 
 const screenView = () => {
-  console.log('screenview')
+  console.log('screenview');
   RNSnowplowTracker.trackScreenViewEvent(
     'Name',
     null,
@@ -37,14 +37,14 @@ const screenView = () => {
 };
 
 const itemImpression = ({id}) => {
-  console.log('impression', id)
+  console.log('impression', id);
 };
 
 const itemEngage = ({type, id}) => {
-  console.log('engage', type, id)
+  console.log('engage', type, id);
 };
 
-const Item = ({id, title, teaser, body, onClose}) => {
+const Item = ({id, title, teaser, body, image, onClose}) => {
   // screenview on listing view
   // impression on item teaser render with item entity
   // click leads to engage event with type expand with item entity
@@ -61,6 +61,7 @@ const Item = ({id, title, teaser, body, onClose}) => {
   return (
     <View>
       <Text>{title}</Text>
+      <Image source={image} />
       <Text>{teaser}</Text>
       <Button
         title={'View item'}
@@ -77,6 +78,8 @@ const Item = ({id, title, teaser, body, onClose}) => {
         onShow={onShow}
         onDismiss={onClose}>
         <View>
+          <Text>{title}</Text>
+          <Image source={image} />
           <Text>{body}</Text>
           <Button title={'Like'} onPress={() => itemEngage({type: 'Like', id})}>
             Like
@@ -90,10 +93,31 @@ const Item = ({id, title, teaser, body, onClose}) => {
   );
 };
 
+const imageOne = require('./img/1.png');
+const imageTwo = require('./img/3.png');
+const imageThree = require('./img/shirtgreen.png');
 const items = [
-  {id: 1, title: 'item 33', teaser: 'teaser one', body: 'body one'},
-  {id: 2, title: 'item one', teaser: 'teaser one', body: 'body one'},
-  {id: 3, title: 'item one', teaser: 'teaser one', body: 'body one'},
+  {
+    id: 1,
+    title: 'item one',
+    teaser: 'teaser one',
+    body: 'body one',
+    image: imageOne,
+  },
+  {
+    id: 2,
+    title: 'item one',
+    teaser: 'teaser one',
+    body: 'body one',
+    image: imageTwo,
+  },
+  {
+    id: 3,
+    title: 'item one',
+    teaser: 'teaser one',
+    body: 'body one',
+    image: imageThree,
+  },
 ];
 
 const App: () => React$Node = () => {
