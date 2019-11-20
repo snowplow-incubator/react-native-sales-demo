@@ -91,7 +91,7 @@ const Item = ({id, title, teaser, body, onClose}) => {
 };
 
 const items = [
-  {id: 1, title: 'item one', teaser: 'teaser one', body: 'body one'},
+  {id: 1, title: 'item 33', teaser: 'teaser one', body: 'body one'},
   {id: 2, title: 'item one', teaser: 'teaser one', body: 'body one'},
   {id: 3, title: 'item one', teaser: 'teaser one', body: 'body one'},
 ];
