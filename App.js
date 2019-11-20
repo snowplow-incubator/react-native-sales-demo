@@ -36,6 +36,40 @@ const screenView = () => {
   );
 };
 
+
+const styles = StyleSheet.create({
+  item: {
+    display: 'flex',
+    width: '100%',
+    alignItems: 'center',
+  },
+  itemImage: {
+    marginTop: '10%',
+    marginBottom: '5%'
+  },
+  itemHeading:{
+    fontSize: 24,
+    fontWeight: 'bold'
+  },
+  itemDesc: {
+    margin: '5%',
+    fontSize: 16,
+    textAlign: 'center'
+  },
+  body: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '100%',
+  },
+  logo:{
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: '22%',
+    marginTop: '5%'
+  }
+});
+
+
 const itemImpression = ({id}) => {
   console.log('impression', id);
 };
@@ -59,10 +93,10 @@ const Item = ({id, title, teaser, body, image, onClose}) => {
   }, [id]);
 
   return (
-    <View>
-      <Text>{title}</Text>
-      <Image source={image} />
-      <Text>{teaser}</Text>
+    <View style={styles.item}>
+      <Image style={styles.itemImage} source={image} />
+      <Text style={styles.itemHeading}>{title}</Text>
+      <Text style={styles.itemDesc}>{teaser}</Text>
       <Button
         title={'View item'}
         onPress={() => {
@@ -72,15 +106,16 @@ const Item = ({id, title, teaser, body, image, onClose}) => {
         View item
       </Button>
       <Modal
+        style={styles.category}
         animationType="slide"
         transparent={false}
         visible={modalVisible}
         onShow={onShow}
         onDismiss={onClose}>
         <View>
-          <Text>{title}</Text>
           <Image source={image} />
-          <Text>{body}</Text>
+          <Text style={styles.itemHeading}>{title}</Text>
+          <Text style={styles.itemDesc}>{body}</Text>
           <Button title={'Like'} onPress={() => itemEngage({type: 'Like', id})}>
             Like
           </Button>
@@ -96,25 +131,26 @@ const Item = ({id, title, teaser, body, image, onClose}) => {
 const imageOne = require('./img/1.png');
 const imageTwo = require('./img/3.png');
 const imageThree = require('./img/shirtgreen.png');
+const logo = require('./img/logo.png');
 const items = [
   {
     id: 1,
-    title: 'item one',
-    teaser: 'teaser one',
+    title: 'The purple cool',
+    teaser: 'Winter Hat, Knitted Hat, Warm Beanie Winter Hat and scarf…',
     body: 'body one',
     image: imageOne,
   },
   {
     id: 2,
-    title: 'item one',
-    teaser: 'teaser one',
+    title: 'The pink cool',
+    teaser: 'Winter Hat, Knitted Hat, Warm Beanie Winter Hat and scarf…',
     body: 'body one',
     image: imageTwo,
   },
   {
     id: 3,
-    title: 'item one',
-    teaser: 'teaser one',
+    title: 'The green shirt',
+    teaser: 'Winter Hat, Knitted Hat, Warm Beanie Winter Hat and scarf…',
     body: 'body one',
     image: imageThree,
   },
@@ -138,8 +174,9 @@ const App: () => React$Node = () => {
     <>
       <SafeAreaView>
         <ScrollView contentInsetAdjustmentBehavior="automatic">
-          <Text>Hero Area</Text>
-          <Text>Listing area</Text>
+          {/* <Text>Hero Area</Text> */}
+          <Image style={styles.logo} source={logo} />
+          {/* <Text>Listing area</Text> */}
           <View>
             {items.map(i => (
               <Item {...i} onClose={() => screenView()} />
