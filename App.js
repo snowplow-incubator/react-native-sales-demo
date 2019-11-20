@@ -36,8 +36,19 @@ const screenView = () => {
   );
 };
 
-const itemImpression = ({id}) => {
-  console.log('impression', id);
+const itemImpression = ({id, name}) => {
+  RNSnowplowTracker.trackSelfDescribingEvent(
+    {
+      schema: 'iglu:com.snowplow/impression/jsonschema/1-0-0',
+      data: {},
+    },
+    [
+      {
+        schema: 'iglu:com.demostore/product_entity/jsonschema/1-0-0',
+        data: {product_id: id, color: name, name, price: 1},
+      },
+    ],
+  );
 };
 
 const itemEngage = ({type, id}) => {
@@ -55,8 +66,8 @@ const Item = ({id, title, teaser, body, image, onClose}) => {
   const onShow = () => screenView(id);
 
   useEffect(() => {
-    itemImpression({id});
-  }, [id]);
+    itemImpression({id, name: title});
+  }, [id, title]);
 
   return (
     <View>
@@ -99,23 +110,23 @@ const imageThree = require('./img/shirtgreen.png');
 const items = [
   {
     id: 1,
-    title: 'item one',
+    title: 'iten one',
     teaser: 'teaser one',
     body: 'body one',
     image: imageOne,
   },
   {
     id: 2,
-    title: 'item one',
-    teaser: 'teaser one',
+    title: 'item two',
+    teaser: 'teaser two',
     body: 'body one',
     image: imageTwo,
   },
   {
     id: 3,
-    title: 'item one',
-    teaser: 'teaser one',
-    body: 'body one',
+    title: 'item three',
+    teaser: 'teaser three',
+    body: 'body three',
     image: imageThree,
   },
 ];
