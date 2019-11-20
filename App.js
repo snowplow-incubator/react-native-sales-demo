@@ -133,7 +133,7 @@ const items = [
 
 const App: () => React$Node = () => {
   RNSnowplowTracker.initialize(
-    'demo.snowplowanalytics.com',
+    'ec2-3-10-58-40.eu-west-2.compute.amazonaws.com',
     'post',
     'http',
     'namespace',
