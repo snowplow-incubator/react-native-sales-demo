@@ -6,7 +6,7 @@
  * @flow
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -16,6 +16,7 @@ import {
   StatusBar,
   Button,
   ImageBackground,
+  Modal,
 } from 'react-native';
 
 import {NativeModules} from 'react-native';
@@ -42,6 +43,36 @@ const screenView = () => {
   );
 };
 
+const Item = () => {
+  // screenview on listing view
+  // impression on item teaser render with item entity
+  // click leads to engage event with type expand with item entity
+  // screenview on actual view with item entity
+  // engage click leads to 'engage/like/share' engage event again with item
+  // close leads to screenview on the main page
+  const [modalVisible, setModalVisible] = useState(false);
+  return (
+    <View>
+      <Text>item title</Text>
+      <Text>item teaser</Text>
+      <Button title={'View item'} onPress={() => setModalVisible(true)}>
+        View item
+      </Button>
+      <Modal animationType="slide" transparent={false} visible={modalVisible}>
+        <View>
+          <Text>In a modal</Text>
+          <Button title={'Engage'} onPress={() => setModalVisible(false)}>
+            Engage
+          </Button>
+          <Button title={'Close'} onPress={() => setModalVisible(false)}>
+            View item
+          </Button>
+        </View>
+      </Modal>
+    </View>
+  );
+};
+
 const App: () => React$Node = () => {
   RNSnowplowTracker.initialize(
     'ec2-52-56-222-161.eu-west-2.compute.amazonaws.com',
@@ -53,96 +84,19 @@ const App: () => React$Node = () => {
   );
   return (
     <>
-      <StatusBar barStyle="dark-content" />
-      <View style={{flex: 1}}>
-    <ImageBackground source={require('./img/hero-background.png')} style={{width: '100%', height: '100%'}}>
-    <Text>Ok</Text>
-    <Button title="button" onPress={screenView}>
-    Click
-    </Button>
-    </ImageBackground>
-      </View>
       <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
+        <ScrollView contentInsetAdjustmentBehavior="automatic">
+          <Text>Hero Area</Text>
+          <Text>Listing area</Text>
+          <View>
+            <Item />
+            <Item />
+            <Item />
           </View>
         </ScrollView>
       </SafeAreaView>
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
-  },
-  engine: {
-    position: 'absolute',
-    right: 0,
-  },
-  body: {
-    backgroundColor: Colors.white,
-  },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
-  },
-});
 
 export default App;
