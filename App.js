@@ -22,7 +22,8 @@ import {
 import {NativeModules} from 'react-native';
 const RNSnowplowTracker = NativeModules.RNSnowplowTracker;
 
-const screenView = id => {
+const screenView = () => {
+  console.log('screenview')
   RNSnowplowTracker.trackScreenViewEvent(
     'Name',
     null,
@@ -54,7 +55,7 @@ const Item = ({id, title, teaser, body, onClose}) => {
   const onShow = () => screenView(id);
 
   useEffect(() => {
-    itemImpression(id);
+    itemImpression({id});
   }, [id]);
 
   return (
