@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="320" height="507" viewBox="0 0 320 507">
+    <defs>
+        <linearGradient id="c" x1="11.935%" x2="70.649%" y1="58.001%" y2="43.439%">
+            <stop offset="0%" stop-color="#87B3F1"/>
+            <stop offset="100%" stop-color="#64BBE4"/>
+        </linearGradient>
+        <path id="b" d="M-92 349.78l1003.76.315-137.679 182.707-61.972 82.24L-92 614.779a2.002 2.002 0 0 1-2-2v-261a2 2 0 0 1 2-2z"/>
+        <filter id="a" width="111.2%" height="140.3%" x="-5.3%" y="-19.4%" filterUnits="objectBoundingBox">
+            <feMorphology in="SourceAlpha" operator="dilate" radius="3" result="shadowSpreadOuter1"/>
+            <feOffset dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="14.5"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0.487211344 0 0 0 0 0.72342899 0 0 0 0 0.921931612 0 0 0 0.265215253 0"/>
+        </filter>
+        <linearGradient id="f" x1="11.935%" x2="70.649%" y1="50.439%" y2="49.64%">
+            <stop offset="0%" stop-color="#87B3F1"/>
+            <stop offset="100%" stop-color="#64BBE4"/>
+        </linearGradient>
+        <path id="e" d="M260.351 303H772.34a2 2 0 0 1 1.597 3.204l-18.574 24.649a2 2 0 0 1-1.584.796l-493.414 3.337a2 2 0 0 1-2.014-2V305a2 2 0 0 1 2-2z"/>
+        <filter id="d" width="120.3%" height="434.3%" x="-10.3%" y="-160.9%" filterUnits="objectBoundingBox">
+            <feMorphology in="SourceAlpha" operator="dilate" radius="3" result="shadowSpreadOuter1"/>
+            <feOffset dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="14.5"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0.487211344 0 0 0 0 0.72342899 0 0 0 0 0.921931612 0 0 0 0.265215253 0"/>
+        </filter>
+        <path id="h" d="M246 201h511.989a2 2 0 0 1 1.597 3.204l-18.574 24.649a2 2 0 0 1-1.584.796l-493.414 3.337a2 2 0 0 1-2.014-2V203a2 2 0 0 1 2-2z"/>
+        <filter id="g" width="120.3%" height="434.3%" x="-10.3%" y="-160.9%" filterUnits="objectBoundingBox">
+            <feMorphology in="SourceAlpha" operator="dilate" radius="3" result="shadowSpreadOuter1"/>
+            <feOffset dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="14.5"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0.487211344 0 0 0 0 0.72342899 0 0 0 0 0.921931612 0 0 0 0.265215253 0"/>
+        </filter>
+        <linearGradient id="k" x1="11.935%" x2="70.649%" y1="52.619%" y2="47.852%">
+            <stop offset="0%" stop-color="#87B3F1"/>
+            <stop offset="100%" stop-color="#64BBE4"/>
+        </linearGradient>
+        <path id="j" d="M150.557 651.232l355.882-4.586-26.366 54h-329.49a2 2 0 0 1-2-2V653.23a2 2 0 0 1 1.974-2z"/>
+        <filter id="i" width="130.9%" height="298.4%" x="-15%" y="-95.6%" filterUnits="objectBoundingBox">
+            <feMorphology in="SourceAlpha" operator="dilate" radius="3" result="shadowSpreadOuter1"/>
+            <feOffset dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="14.5"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0.487211344 0 0 0 0 0.72342899 0 0 0 0 0.921931612 0 0 0 0.265215253 0"/>
+        </filter>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g transform="rotate(53 625.345 65.208)">
+            <use fill="#000" filter="url(#a)" xlink:href="#b"/>
+            <use fill="url(#c)" xlink:href="#b"/>
+        </g>
+        <g transform="rotate(53 733.816 -98.203)">
+            <use fill="#000" filter="url(#d)" xlink:href="#e"/>
+            <use fill="url(#f)" xlink:href="#e"/>
+        </g>
+        <g transform="rotate(53 719.464 -200.203)">
+            <use fill="#000" filter="url(#g)" xlink:href="#h"/>
+            <use fill="url(#f)" xlink:href="#h"/>
+        </g>
+        <g transform="rotate(53 543.975 256.443)">
+            <use fill="#000" filter="url(#i)" xlink:href="#j"/>
+            <use fill="url(#k)" xlink:href="#j"/>
+        </g>
+    </g>
+</svg>
